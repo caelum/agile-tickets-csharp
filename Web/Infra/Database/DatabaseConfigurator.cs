@@ -15,10 +15,10 @@ namespace AgileTickets.Web.Infra.Database
         public static ISessionFactory CreateSessionFactory()
         {
             return Fluently.Configure().Database(
-                MySQLConfiguration.Standard.ConnectionString(c => c.FromAppSetting("connection_string"))
+                SQLiteConfiguration.Standard.UsingFile("agiletickets.db")
             ).Mappings(m =>
             {
-                m.FluentMappings.AddFromAssemblyOf<Estabelecimento>();
+                m.FluentMappings.AddFromAssemblyOf<DatabaseConfigurator>();
             }).BuildSessionFactory();
             
         }
