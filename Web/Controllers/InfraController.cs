@@ -7,7 +7,6 @@ using AgileTickets.Web.Infra.Database;
 using AgileTickets.Web.Models;
 using NHibernate.Tool.hbm2ddl;
 using NHibernate;
-using AgileTickets.Web.Infra.Database;
 
 namespace AgileTickets.Web.Controllers
 {

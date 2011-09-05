@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using AgileTickets.Web.Models;
 
-namespace AgileTickets.Web.Infra.Clock
+namespace AgileTickets.Web.Models
 {
     public class RelogioDoSistema : Relogio
     {

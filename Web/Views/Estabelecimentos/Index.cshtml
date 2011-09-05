@@ -1,0 +1,21 @@
+﻿@model IList<AgileTickets.Web.Models.Estabelecimento>
+@{
+    ViewBag.Title = "Estabelecimentos";
+}
+
+<h2>Estabelecimentos</h2>
+
+<table width="100%">
+
+    <tr>
+        <td width="40%">Nome</td>
+        <td width="60%">Endereço</td>
+    </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>@item.Nome</td>
+            <td>@item.Endereco</td>
+        </tr>
+    }
+</table>
