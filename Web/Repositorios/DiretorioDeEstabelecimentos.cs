@@ -9,5 +9,7 @@ namespace AgileTickets.Web.Repositorios
     public interface DiretorioDeEstabelecimentos
     {
         IList<Estabelecimento> Todos();
+
+        void Salva(Estabelecimento estabelecimento);
     }
 }

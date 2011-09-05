@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using AgileTickets.Web.Repositorios;
+using AgileTickets.Web.Models;
 
 namespace AgileTickets.Web.Controllers
 {
@@ -21,5 +22,10 @@ namespace AgileTickets.Web.Controllers
             return View(estabelecimentos.Todos());
         }
 
+        public ActionResult Novo(Estabelecimento estabelecimento)
+        {
+            estabelecimentos.Salva(estabelecimento);
+            return RedirectToAction("Index");
+        }
     }
 }
