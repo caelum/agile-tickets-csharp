@@ -3,6 +3,10 @@ using Microsoft.Practices.Unity;
 using Unity.Mvc3;
 using NHibernate;
 using Unity;
+using AgileTickets.Web.Models;
+using AgileTickets.Web.Repositorios;
+using AgileTickets.Web.Infra.Dao;
+using AgileTickets.Web.Infra.Clock;
 
 namespace AgileTickets.Web.Infra.DI
 {
@@ -19,12 +23,12 @@ namespace AgileTickets.Web.Infra.DI
         {
             var container = new UnityContainer();
 
-            // register all your components with the container here
-            // e.g. container.RegisterType<ITestService, TestService>();            
+            container.RegisterType<Agenda, AgendaDao>();
+            container.RegisterType<Relogio, RelogioDoSistema>();
 
             container.RegisterControllers();
-
             ConfigureNHibernate(container);
+
             return container;
         }
 

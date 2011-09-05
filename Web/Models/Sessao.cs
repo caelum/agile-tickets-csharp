@@ -7,13 +7,13 @@ namespace AgileTickets.Web.Models
 {
     public class Sessao
     {
-        public int Id { get; set; }
-        public Espetaculo Espetaculo { get; set; }
-        public int TotalDeIngressos { get; set; }
-        public int IngressosReservados { get; set; }
-        public DateTime Inicio { get; set; }
+        public virtual int Id { get; set; }
+        public virtual Espetaculo Espetaculo { get; set; }
+        public virtual int TotalDeIngressos { get; set; }
+        public virtual int IngressosReservados { get; set; }
+        public virtual DateTime Inicio { get; set; }
 
-        public bool PodeReservar(int NumeroDeIngressos)
+        public virtual bool PodeReservar(int NumeroDeIngressos)
         {
             return TotalDeIngressos > NumeroDeIngressos;
         }

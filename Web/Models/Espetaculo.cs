@@ -7,13 +7,13 @@ namespace AgileTickets.Web.Models
 {
     public class Espetaculo
     {
-        public int Id { get; set; }
-        public string Nome { get; set; }
-        public string Descricao { get; set; }
-        public IList<Sessao> Sessoes { get; set; }
-        private Estabelecimento Estabelecimento { get; set; }
+        public virtual int Id { get; set; }
+        public virtual string Nome { get; set; }
+        public virtual string Descricao { get; set; }
+        public virtual IList<Sessao> Sessoes { get; set; }
+        public virtual Estabelecimento Estabelecimento { get; set; }
 
-        public List<Sessao> CriaSessoes(DateTime inicio, DateTime fim, Periodicidade periodicidade)
+        public virtual List<Sessao> CriaSessoes(DateTime inicio, DateTime fim, Periodicidade periodicidade)
         {
             return null;
         }

@@ -7,8 +7,8 @@ namespace AgileTickets.Web.Models
 {
     public class Estabelecimento
     {
-        public int Id { get; set; }
-        public string Nome { get; set; }
-        public String Endereco { get; set; }
+        public virtual int Id { get; set; }
+        public virtual string Nome { get; set; }
+        public virtual String Endereco { get; set; }
     }
 }
