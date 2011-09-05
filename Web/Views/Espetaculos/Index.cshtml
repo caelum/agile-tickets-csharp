@@ -5,6 +5,18 @@
 
 <h2>Espetáculos</h2>
 
+<form action="@Url.Action("Novo", "Espetaculos")" method="post">
+Nome: <input type="text" name="espetaculo.nome" />
+Descrição: <input type="text" name="espetaculo.descricao" />
+Estabelecimento: 
+<select name="espetaculo.estabelecimento.id">
+    @foreach(var item in ViewBag.Estabelecimentos) {
+        <option value="@item.Id">@item.Nome</option>
+    }
+</select>
+<input type="submit" value="Adicionar" />
+</form>
+
 <table width="100%">
 
     <tr>

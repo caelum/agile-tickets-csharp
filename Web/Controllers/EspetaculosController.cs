@@ -12,15 +12,24 @@ namespace AgileTickets.Web.Controllers
     public class EspetaculosController : Controller
     {
         private Agenda agenda;
+        private DiretorioDeEstabelecimentos estabelecimentos;
 
-        public EspetaculosController(Agenda agenda)
+        public EspetaculosController(Agenda agenda, DiretorioDeEstabelecimentos estabelecimentos)
         {
             this.agenda = agenda;
+            this.estabelecimentos = estabelecimentos;
         }
 
         public ActionResult Index()
         {
+            ViewBag.Estabelecimentos = estabelecimentos.Todos();
             return View(agenda.Espetaculos());
+        }
+
+        public ActionResult Novo(Espetaculo espetaculo) {
+            agenda.Cadastra(espetaculo);
+
+            return RedirectToAction("Index");
         }
 
     }
