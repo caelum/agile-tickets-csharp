@@ -14,7 +14,8 @@ namespace AgileTickets.Web.Infra.Database
             Id(c => c.Id);
             Map(c => c.Descricao);
             Map(c => c.Nome);
-            HasMany(c => c.Sessoes);
+            HasMany(c => c.Sessoes).LazyLoad();
+            References(c => c.Estabelecimento);
         }
     }
 }

@@ -7,6 +7,7 @@ using AgileTickets.Web.Models;
 using AgileTickets.Web.Repositorios;
 using AgileTickets.Web.Infra.Dao;
 using AgileTickets.Web.Infra.Clock;
+using AgileTickets.Web.Infra.Database;
 
 namespace AgileTickets.Web.Infra.DI
 {

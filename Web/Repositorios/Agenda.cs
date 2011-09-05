@@ -8,10 +8,10 @@ namespace AgileTickets.Web.Repositorios
 {
     public interface Agenda
     {
-        IList<Espetaculo> espetaculos();
-        void cadastra(Espetaculo espetaculo);
-        Sessao sessao(long sessaoId);
-        IList<Sessao> proximasSessoes(int maximo);
-        void agende(List<Sessao> sessoes);
+        IList<Espetaculo> Espetaculos();
+        void Cadastra(Espetaculo espetaculo);
+        Sessao Sessao(long sessaoId);
+        IList<Sessao> ProximasSessoes(int maximo);
+        void Agende(List<Sessao> sessoes);
     }
 }

@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using AgileTickets.Web.Repositorios;
 using AgileTickets.Web.Models;
+using AgileTickets.Web.Infra.Database;
 
 namespace AgileTickets.Web.Controllers
 {
@@ -19,9 +20,7 @@ namespace AgileTickets.Web.Controllers
 
         public ActionResult Index()
         {
-            ViewBag["Espetaculos"] = agenda.espetaculos();
-
-            return View();
+            return View(agenda.Espetaculos());
         }
 
     }

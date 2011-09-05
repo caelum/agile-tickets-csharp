@@ -1,18 +1,19 @@
-﻿@{
+﻿@model IList<AgileTickets.Web.Models.Espetaculo>
+@{
     ViewBag.Title = "Espetáculos";
 }
 
 <h2>Espetáculos</h2>
 
-<table>
+<table width="100%">
 
     <tr>
-        <td>Nome</td>
-        <td>Descrição</td>
-        <td>Estabelecimento</td>
+        <td width="30%">Nome</td>
+        <td width="40%">Descrição</td>
+        <td width="30%">Estabelecimento</td>
     </tr>
 
-    @foreach (var item in ViewBag.Espetaculos) {
+    @foreach (var item in Model) {
         <tr>
             <td>@item.Nome</td>
             <td>@item.Descricao</td>

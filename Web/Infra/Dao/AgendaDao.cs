@@ -18,23 +18,23 @@ namespace AgileTickets.Web.Infra.Dao
             this.relogio = relogio;
         }
 
-        public IList<Espetaculo> espetaculos()
+        public IList<Espetaculo> Espetaculos()
         {
             return session.CreateCriteria<Espetaculo>().List<Espetaculo>();
         }
 
 
-        public void cadastra(Espetaculo espetaculo)
+        public void Cadastra(Espetaculo espetaculo)
         {
             session.Save(espetaculo);
         }
 
-        public Sessao sessao(long sessaoId)
+        public Sessao Sessao(long sessaoId)
         {
             return session.Load<Sessao>(sessaoId);
         }
 
-        public IList<Sessao> proximasSessoes(int maximo)
+        public IList<Sessao> ProximasSessoes(int maximo)
         {
             return session.CreateQuery("select s from Sessao s where s.inicio > :hoje order by s.inicio")
                 .SetParameter<DateTime>("hoje", relogio.agora())
@@ -42,7 +42,7 @@ namespace AgileTickets.Web.Infra.Dao
                 .List<Sessao>();
         }
 
-        public void agende(List<Sessao> sessoes)
+        public void Agende(List<Sessao> sessoes)
         {
             foreach (Sessao novaSessao in sessoes)
             {
