@@ -36,16 +36,37 @@ namespace AgileTickets.Web.Controllers
         }
 
         [RequiresTransaction]
+        public ActionResult ReservarOld(int sessaoId, int quantidade)
+        {
+            Sessao sessao = agenda.Sessao(sessaoId);
+
+            if (sessao.IngressosDisponiveis > quantidade)
+            {
+                ViewBag.MensagemDeErro = "Você não pode reservar mais do que " + sessao.IngressosDisponiveis + " ingressos!";
+                return RedirectToAction("Exibir", new { id = sessaoId });
+            }
+
+            sessao.Reserva(quantidade);
+            agenda.Atualiza(sessao);
+
+            return RedirectToAction("Index");
+
+        }
+        [RequiresTransaction]
         public ActionResult Reservar(int sessaoId, int quantidade)
         {
             Sessao sessao = agenda.Sessao(sessaoId);
 
+            // Soh podemos reservar uma sessao, caso a quantidade de
+            // ingressos solicitados seja menor do que a quantidade
+            // de ingressos disponiveis
             if (!sessao.PodeReservar(quantidade))
             {
                 ViewBag.MensagemDeErro = "Você não pode reservar mais do que " + sessao.IngressosDisponiveis + " ingressos!";
                 return RedirectToAction("Exibir", new { id = sessaoId });
             }
 
+            // reservamos a quantidade e atualizamos os dados
             sessao.Reserva(quantidade);
             agenda.Atualiza(sessao);
 
@@ -56,6 +77,7 @@ namespace AgileTickets.Web.Controllers
         public ActionResult Salvar(int id, DateTime inicio, DateTime fim, Periodicidade periodicidade)
         {
             Espetaculo espetaculo = agenda.Espetaculo(id);
+
             List<Sessao> novasSessoes = espetaculo.CriaSessoes(inicio, fim, periodicidade);
 
             agenda.Agende(novasSessoes);

@@ -15,6 +15,7 @@ namespace AgileTickets.Web.Controllers
 
         public EstabelecimentosController(DiretorioDeEstabelecimentos estabelecimentos)
         {
+            // guarda estabelecimento
             this.estabelecimentos = estabelecimentos;
         }
 
@@ -26,8 +27,18 @@ namespace AgileTickets.Web.Controllers
         [RequiresTransaction]
         public ActionResult Novo(Estabelecimento estabelecimento)
         {
+            var copia = estabelecimento;
+
             estabelecimentos.Salva(estabelecimento);
+
+            // redireciona
             return RedirectToAction("Index");
+        }
+
+        private Estabelecimento PopulaEstabelecimento() 
+        {
+            Estabelecimento e = new Estabelecimento();
+            return e;
         }
     }
 }
