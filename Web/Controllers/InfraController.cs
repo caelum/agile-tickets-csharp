@@ -26,7 +26,7 @@ namespace AgileTickets.Web.Controllers
             return View();
         }
 
-        public ActionResult Dados()
+        public ActionResult Cenario()
         {
             Estabelecimento morumbi = new Estabelecimento();
             morumbi.Nome = "Estádio do Morumbi";
