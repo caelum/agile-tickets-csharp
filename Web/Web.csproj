@@ -118,7 +118,9 @@
     <Compile Include="Models\Estabelecimento.cs" />
     <Compile Include="Models\Periodicidade.cs" />
     <Compile Include="Models\Relogio.cs" />
+    <Compile Include="Models\Sala.cs" />
     <Compile Include="Models\Sessao.cs" />
+    <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositorios\Agenda.cs" />
     <Compile Include="Repositorios\DiretorioDeEstabelecimentos.cs" />

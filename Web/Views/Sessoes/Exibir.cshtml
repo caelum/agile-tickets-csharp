@@ -6,6 +6,10 @@
 
 <h2>Sessão: @Model.Espetaculo.Nome</h2>
 
+<p class="error">
+@TempData["MensagemDeErro"]
+</p>
+
 <p>Data: @Model.Inicio.ToString("dd/MM/yyyy")</p>
 <p>Total de Ingressos: @Model.TotalDeIngressos</p>
 <p>Total de Ingressos Reservados: @Model.IngressosReservados</p>

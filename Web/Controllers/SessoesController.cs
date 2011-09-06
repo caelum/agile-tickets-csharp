@@ -62,7 +62,7 @@ namespace AgileTickets.Web.Controllers
             // de ingressos disponiveis
             if (!sessao.PodeReservar(quantidade))
             {
-                ViewBag.MensagemDeErro = "Você não pode reservar mais do que " + sessao.IngressosDisponiveis + " ingressos!";
+                TempData["MensagemDeErro"] = "Você não pode reservar mais do que " + sessao.IngressosDisponiveis + " ingressos!";
                 return RedirectToAction("Exibir", new { id = sessaoId });
             }
 

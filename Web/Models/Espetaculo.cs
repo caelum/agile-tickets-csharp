@@ -36,7 +36,7 @@ namespace AgileTickets.Web.Models
             return null;
         }
 
-        public bool Vagas(int qtd, int min)
+        public virtual bool Vagas(int qtd, int min)
         {
 
             int totDisp = 0;
