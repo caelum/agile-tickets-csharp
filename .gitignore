@@ -12,3 +12,5 @@ _ReSharper.*
 *.resharper
 packages
 Web/Logs
+target/
+Web.Publish.xml

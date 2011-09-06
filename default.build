@@ -1,0 +1,94 @@
+﻿<?xml version="1.0"?>
+<project name="AgileTickets" default="compile">
+
+	<property name="nunit.path" value="packages\NUnit.2.5.10.11092\tools" />
+	<property name="test.build.dir" value="Tests\bin\Release" />
+	<property name="webapp.path" value="Web" />
+	<property name="webapp.binary.path" value="${webapp.path}\bin" />
+	<property name="nant.contrib.path" value="C:\Program Files\nantcontrib\bin" />
+  
+  <property name="deploy.path" value="target/web" />
+  <property name="reports.path" value="target/reports" />
+
+  <property name="production.path" value="c:\inetpub\agiletickets" />
+
+	<target name="compile" depends="clean">
+		<loadtasks assembly="${nant.contrib.path}\NAnt.Contrib.Tasks.dll" />
+		<msbuild project="AgileTickets.sln" target="Rebuild">
+			<arg line="/p:Configuration=Release" />
+		</msbuild>
+	</target>
+
+  <target name="clean">
+    <delete>
+    <fileset>
+      <include name="**\bin\**" />
+      <include name="**\obj\**" />
+    </fileset>
+    </delete>
+  </target>
+
+	<target name="tests" description="Roda os testes" depends="compile">
+		<echo message="Running NUnit tests"/>
+    <mkdir dir="${reports.path}" />
+		<exec workingdir="${test.build.dir}" program="${nunit.path}/nunit-console.exe">
+			<arg value="Tests.dll" />
+			<arg value="/xml=../../../${reports.path}/Tests-results.xml" />
+		</exec> 
+
+	</target>
+
+  <target name="deploy" depends="compile">
+    <copy todir="${deploy.path}">
+      <fileset basedir="${webapp.path}">
+        <include name="Web.config" />
+        <include name="Global.asax" />
+      </fileset>
+    </copy>
+
+    <copy todir="${deploy.path}/Views">
+      <fileset basedir="${webapp.path}/Views">
+        <include name="**" />
+      </fileset>
+    </copy>
+
+    <copy todir="${deploy.path}/Content">
+      <fileset basedir="${webapp.path}/Content">
+        <include name="**" />
+      </fileset>
+    </copy>
+
+    <copy todir="${deploy.path}/Scripts">
+      <fileset basedir="${webapp.path}/Scripts">
+        <include name="**" />
+      </fileset>
+    </copy>
+
+    <copy todir="${deploy.path}/Bin">
+      <fileset basedir="${webapp.binary.path}">
+        <include name="**.dll" />
+      </fileset>
+    </copy>
+    
+  </target>
+
+  <target name="stop.iis">
+    <servicecontroller action="Stop" service="w3svc" timeout="10000" verbose="true" />
+  </target>
+
+
+  <target name="start.iis">
+    <servicecontroller action="Start" service="w3svc" timeout="10000" verbose="true" />
+  </target>
+
+  <target name="production" depends="deploy">
+
+    <copy todir="${production.path}">
+      <fileset basedir="${deploy.path}">
+        <include name="**" />
+      </fileset>
+    </copy>
+
+  </target>
+  
+</project>
