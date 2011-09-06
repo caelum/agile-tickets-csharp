@@ -26,6 +26,7 @@ namespace AgileTickets.Web.Controllers
             return View(agenda.Espetaculos());
         }
 
+        [RequiresTransaction]
         public ActionResult Novo(Espetaculo espetaculo) {
             agenda.Cadastra(espetaculo);
 

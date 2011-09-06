@@ -52,6 +52,7 @@ namespace AgileTickets.Web.Controllers
             return RedirectToAction("Index");
         }
 
+        [RequiresTransaction]
         public ActionResult Salvar(int id, DateTime inicio, DateTime fim, Periodicidade periodicidade)
         {
             Espetaculo espetaculo = agenda.Espetaculo(id);
