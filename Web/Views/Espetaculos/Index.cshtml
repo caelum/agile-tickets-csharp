@@ -21,8 +21,9 @@ Estabelecimento:
 
     <tr>
         <td width="30%">Nome</td>
-        <td width="40%">Descrição</td>
-        <td width="30%">Estabelecimento</td>
+        <td width="30%">Descrição</td>
+        <td width="25%">Estabelecimento</td>
+        <td width="15%"></td>
     </tr>
 
     @foreach (var item in Model) {
@@ -30,6 +31,7 @@ Estabelecimento:
             <td>@item.Nome</td>
             <td>@item.Descricao</td>
             <td>@item.Estabelecimento.Nome</td>
+            <td><a href="@Url.Action("Criar", "Sessoes", new { id = @item.Id})">Criar Sessões</a></td>
         </tr>
     }
 </table>

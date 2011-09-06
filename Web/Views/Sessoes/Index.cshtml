@@ -1,0 +1,28 @@
+﻿@model IList<AgileTickets.Web.Models.Sessao>
+
+@{
+    ViewBag.Title = "Sessões";
+}
+
+<h2>Próximas Sessões</h2>
+
+<table width="100%">
+
+    <tr>
+        <td width="15%">Data</td>
+        <td width="50%">Sessão</td>
+        <td width="15%">Ingressos Disponíveis</td>
+        <td>Reservar?</td>
+    </tr>
+
+    @foreach(var item in Model) {
+        <tr>
+        
+            <td>@item.Inicio.ToString("dd/MM/yyyy")</td>
+            <td>@item.Espetaculo.Nome</td>
+            <td>@item.IngressosDisponiveis</td>
+            <td><a href="@Url.Action("Exibir", "Sessoes", new { sessaoId = @item.Id })">Reservar</a></td>
+        </tr>
+
+    }
+</table>

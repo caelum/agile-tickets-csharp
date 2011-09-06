@@ -23,6 +23,11 @@ namespace AgileTickets.Web.Controllers
         {
             new SchemaExport(DatabaseConfigurator.SetEntities().BuildConfiguration()).Execute(false, true, false);
 
+            return View();
+        }
+
+        public ActionResult Dados()
+        {
             Estabelecimento morumbi = new Estabelecimento();
             morumbi.Nome = "Estádio do Morumbi";
             morumbi.Endereco = "São Paulo / SP";
@@ -39,6 +44,17 @@ namespace AgileTickets.Web.Controllers
             e2.Descricao = "Show muito legal!";
             e2.Estabelecimento = morumbi;
             session.Save(e2);
+
+            for (int i = 0; i < 10; i++)
+            {
+                Sessao sessao = new Sessao();
+                sessao.Espetaculo = i%2 == 0 ? e1 : e2;
+                sessao.TotalDeIngressos = 10;
+                sessao.IngressosReservados = 10 - i;
+                sessao.Inicio = DateTime.Now.AddDays(7 + i);
+
+                session.Save(sessao);
+            }
 
             return View();
         }

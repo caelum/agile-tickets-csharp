@@ -29,14 +29,14 @@ namespace AgileTickets.Web.Infra.Dao
             session.Save(espetaculo);
         }
 
-        public Sessao Sessao(long sessaoId)
+        public Sessao Sessao(int sessaoId)
         {
             return session.Load<Sessao>(sessaoId);
         }
 
         public IList<Sessao> ProximasSessoes(int maximo)
         {
-            return session.CreateQuery("select s from Sessao s where s.inicio > :hoje order by s.inicio")
+            return session.CreateQuery("select s from Sessao s where s.Inicio > :hoje order by s.Inicio desc")
                 .SetParameter<DateTime>("hoje", relogio.agora())
                 .SetMaxResults(maximo)
                 .List<Sessao>();
@@ -48,6 +48,17 @@ namespace AgileTickets.Web.Infra.Dao
             {
                 session.Save(novaSessao);
             }
+        }
+
+        public Espetaculo Espetaculo(int id)
+        {
+            return session.Load<Espetaculo>(id);
+        }
+
+
+        public void Atualiza(Sessao sessao)
+        {
+            session.Update(sessao);
         }
     }
 }

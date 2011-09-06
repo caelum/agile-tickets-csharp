@@ -1,0 +1,17 @@
+﻿@model AgileTickets.Web.Models.Sessao
+
+@{
+    ViewBag.Title = "Sessão";
+}
+
+<h2>Sessão: @Model.Espetaculo.Nome</h2>
+
+<p>Data: @Model.Inicio.ToString("dd/MM/yyyy")</p>
+<p>Total de Ingressos: @Model.TotalDeIngressos</p>
+<p>Total de Ingressos Reservados: @Model.IngressosReservados</p>
+<p>Total de Ingressos Disponíveis: @Model.IngressosDisponiveis</p>
+
+<form action="@Url.Action("Reservar", new { id = @Model.Id })" method="post">
+    Quantidade: <input type="text" name="quantidade" />
+    <input type="submit" value="Reservar Ingressos" />
+</form>

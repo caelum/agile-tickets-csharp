@@ -37,21 +37,21 @@
     <Reference Include="Castle.Core">
       <HintPath>..\packages\Castle.Core.2.5.2\lib\NET40ClientProfile\Castle.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Castle.Windsor">
+      <HintPath>..\packages\Castle.Windsor.2.5.3\lib\NET40\Castle.Windsor.dll</HintPath>
+    </Reference>
     <Reference Include="FluentNHibernate">
       <HintPath>..\packages\FluentNHibernate.1.3.0.717\lib\FluentNHibernate.dll</HintPath>
     </Reference>
     <Reference Include="Iesi.Collections">
       <HintPath>..\packages\Iesi.Collections.3.2.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
     </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.Practices.ServiceLocation">
-      <HintPath>..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Unity">
-      <HintPath>..\packages\Unity.2.1.505.0\lib\NET35\Microsoft.Practices.Unity.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Unity.Configuration">
-      <HintPath>..\packages\Unity.2.1.505.0\lib\NET35\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+    <Reference Include="MvcContrib">
+      <HintPath>..\packages\MvcContrib.2.0.95.0\lib\MvcContrib.dll</HintPath>
     </Reference>
     <Reference Include="mysql.data">
       <HintPath>..\packages\MySql.Data.6.4.3\lib\net40\mysql.data.dll</HintPath>
@@ -88,15 +88,13 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
-    <Reference Include="Unity.Mvc3">
-      <HintPath>..\packages\Unity.Mvc3.1.1\lib\Unity.Mvc3.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\EspetaculosController.cs" />
     <Compile Include="Controllers\EstabelecimentosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InfraController.cs" />
+    <Compile Include="Controllers\SessoesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -105,10 +103,17 @@
     <Compile Include="Infra\Database\DatabaseConfigurator.cs" />
     <Compile Include="Infra\Database\EspetaculoMap.cs" />
     <Compile Include="Infra\Database\EstabelecimentoMap.cs" />
+    <Compile Include="Infra\Database\RequiresTransaction.cs" />
     <Compile Include="Infra\Database\SessaoMap.cs" />
-    <Compile Include="Infra\DI\Bootstrapper.cs" />
-    <Compile Include="Infra\DI\HttpContextLifetimeManager.cs" />
-    <Compile Include="Models\RelogioDoSistema.cs" />
+    <Compile Include="Infra\DI\ClockInstaller.cs" />
+    <Compile Include="Infra\DI\ControllerInstaller.cs" />
+    <Compile Include="Infra\DI\DaoInstaller.cs" />
+    <Compile Include="Infra\DI\PersistenceFacility.cs" />
+    <Compile Include="Infra\DI\PersistenceInstaller.cs" />
+    <Compile Include="Infra\DI\WindsorControllerFactory.cs" />
+    <Compile Include="Infra\Clock\RelogioDoSistema.cs" />
+    <Compile Include="Infra\DI\WindsorActionInvoker.cs" />
+    <Compile Include="Infra\DI\WindsorExtensions.cs" />
     <Compile Include="Models\Espetaculo.cs" />
     <Compile Include="Models\Estabelecimento.cs" />
     <Compile Include="Models\Periodicidade.cs" />
@@ -200,6 +205,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Estabelecimentos\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Sessoes\Criar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Sessoes\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Infra\Dados.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Sessoes\Exibir.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
