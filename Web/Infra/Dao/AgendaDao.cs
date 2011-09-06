@@ -44,6 +44,8 @@ namespace AgileTickets.Web.Infra.Dao
 
         public void Agende(List<Sessao> sessoes)
         {
+            if (sessoes == null) return;
+
             foreach (Sessao novaSessao in sessoes)
             {
                 session.Save(novaSessao);

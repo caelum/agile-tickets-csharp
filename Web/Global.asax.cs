@@ -44,6 +44,13 @@ namespace Web
             );
 
             routes.MapRoute(
+                "SalvarSessoes",
+                "espetaculos/{id}/sessoes/salvar",
+                new { controller = "Sessoes", action = "Salvar" }
+            );
+
+
+            routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters
                 new { controller = "Home", action = "Index", id = UrlParameter.Optional } // Parameter defaults
