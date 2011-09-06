@@ -35,5 +35,20 @@ namespace AgileTickets.Web.Models
             // ALUNO: Não apague esse metodo. Esse sim será usado no futuro! ;)
             return null;
         }
+
+        public bool Vagas(int qtd, int min)
+        {
+
+            int totDisp = 0;
+
+            foreach (Sessao s in Sessoes)
+            {
+                if (s.IngressosDisponiveis > min) return false;
+                totDisp += s.IngressosDisponiveis;
+            }
+
+            if (totDisp >= qtd) return true;
+            else return false;
+        }
     }
 }
