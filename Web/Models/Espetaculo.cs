@@ -14,6 +14,10 @@ namespace AgileTickets.Web.Models
         public virtual IList<Sessao> Sessoes { get; set; }
         public virtual Estabelecimento Estabelecimento { get; set; }
 
+        public Espetaculo()
+        {
+            this.Sessoes = new List<Sessao>();
+        }
         /*
          * Esse metodo eh responsavel por criar sessoes para
          * o respectivo espetaculo, dado o intervalo de inicio e fim,
@@ -43,7 +47,21 @@ namespace AgileTickets.Web.Models
 
             foreach (Sessao s in Sessoes)
             {
-                if (s.IngressosDisponiveis > min) return false;
+                if (s.IngressosDisponiveis < min) return false;
+                totDisp += s.IngressosDisponiveis;
+            }
+
+            if (totDisp >= qtd) return true;
+            else return false;
+        }
+
+        public virtual bool Vagas(int qtd)
+        {
+
+            int totDisp = 0;
+
+            foreach (Sessao s in Sessoes)
+            {
                 totDisp += s.IngressosDisponiveis;
             }
 
