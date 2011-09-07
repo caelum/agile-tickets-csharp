@@ -38,7 +38,7 @@ namespace AgileTickets.Web.Controllers
         [RequiresTransaction]
         public ActionResult ReservarOld(int sessaoId, int quantidade)
         {
-            Sessao sessao = agenda.Sessao(sessaoId);
+            Sessao sessao = pegaSessao(sessaoId);
 
             if (sessao.IngressosDisponiveis > quantidade)
             {
@@ -55,7 +55,7 @@ namespace AgileTickets.Web.Controllers
         [RequiresTransaction]
         public ActionResult Reservar(int sessaoId, int quantidade)
         {
-            Sessao sessao = agenda.Sessao(sessaoId);
+            Sessao sessao = pegaSessao(sessaoId);
 
             // Soh podemos reservar uma sessao, caso a quantidade de
             // ingressos solicitados seja menor do que a quantidade
@@ -71,6 +71,11 @@ namespace AgileTickets.Web.Controllers
             agenda.Atualiza(sessao);
 
             return RedirectToAction("Index");
+        }
+
+        private Sessao pegaSessao(int sessaoId)
+        {
+            return agenda.Sessao(sessaoId);
         }
 
         [RequiresTransaction]
