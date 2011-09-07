@@ -13,8 +13,12 @@
   <property name="production.path" value="c:\inetpub\agiletickets" />
 
   <target name="resolve" depends="clean">
-    <exec workingdir="." program="NuGet install -o packages/ Web\packages.config" />
-    <exec workingdir="." program="NuGet install -o packages/ Tests\packages.config" />
+    <exec workingdir="./" basedir="./" program="NuGet">
+      <arg line="install -o packages/ Web/packages.config" />
+    </exec>
+    <exec workingdir="./" basedir="./" program="NuGet">
+      <arg line="install -o packages/ Tests/packages.config"/>
+    </exec>
   </target>
   
 	<target name="compile" depends="resolve">
