@@ -12,7 +12,12 @@
 
   <property name="production.path" value="c:\inetpub\agiletickets" />
 
-	<target name="compile" depends="clean">
+  <target name="resolve" depends="clean">
+    <exec workingdir="." program="NuGet install -o packages/ Web\packages.config" />
+    <exec workingdir="." program="NuGet install -o packages/ Tests\packages.config" />
+  </target>
+  
+	<target name="compile" depends="resolve">
 		<loadtasks assembly="${nant.contrib.path}\NAnt.Contrib.Tasks.dll" />
 		<msbuild project="AgileTickets.sln" target="Rebuild">
 			<arg line="/p:Configuration=Release" />
@@ -70,15 +75,6 @@
       </fileset>
     </copy>
     
-  </target>
-
-  <target name="stop.iis">
-    <servicecontroller action="Stop" service="w3svc" timeout="10000" verbose="true" />
-  </target>
-
-
-  <target name="start.iis">
-    <servicecontroller action="Start" service="w3svc" timeout="10000" verbose="true" />
   </target>
 
   <target name="production" depends="deploy">
