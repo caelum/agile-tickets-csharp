@@ -20,6 +20,9 @@
     <exec workingdir="./" basedir="./" program="NuGet">
       <arg line="install -o packages/ Tests/packages.config"/>
     </exec>
+    <exec workingdir="./" basedir="./" program="NuGet">
+      <arg line="install -o packages/ AcceptanceTests/packages.config"/>
+    </exec>
   </target>
   
 	<target name="compile" depends="resolve">
