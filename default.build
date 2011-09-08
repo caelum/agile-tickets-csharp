@@ -42,7 +42,6 @@
   </target>
 
 	<target name="tests" description="Roda os testes" depends="compile">
-		<echo message="Running NUnit tests"/>
     <mkdir dir="${reports.path}" />
 		<exec workingdir="${test.build.dir}" program="${nunit.path}/nunit-console.exe">
 			<arg value="Tests.dll" />
@@ -51,62 +50,4 @@
 
 	</target>
 
-  <target name="package" depends="compile">
-    <copy todir="${package.path}/Views">
-      <fileset basedir="${webapp.path}/Views">
-        <include name="**" />
-      </fileset>
-    </copy>
-
-    <copy todir="${package.path}/Content">
-      <fileset basedir="${webapp.path}/Content">
-        <include name="**" />
-      </fileset>
-    </copy>
-
-    <copy todir="${package.path}/Scripts">
-      <fileset basedir="${webapp.path}/Scripts">
-        <include name="**" />
-      </fileset>
-    </copy>
-
-    <copy todir="${package.path}/Bin">
-      <fileset basedir="${webapp.binary.path}">
-        <include name="**.dll" />
-      </fileset>
-    </copy>
-    
-  </target>
-
-  <target name="config-production" depends="package">
-    <copy todir="${package.path}">
-      <fileset basedir="${webapp.path}">
-        <include name="Web.config.production" />
-        <include name="Global.asax" />
-      </fileset>
-    </copy>
-
-    <move file="${package.path}/Web.config.production" tofile="${package.path}/Web.config" />
-  </target>
-
-  <target name="config-homolog" depends="package">
-    <copy todir="${package.path}">
-      <fileset basedir="${webapp.path}">
-        <include name="Web.config.homolog" />
-        <include name="Global.asax" />
-      </fileset>
-    </copy>
-
-    <move file="${package.path}/Web.config.homolog" tofile="${package.path}/Web.config" />
-  </target>
-
-
-  <target name="zip-production" depends="config-production">
-    <zip zipfile="${target.path}/web.zip">
-      <fileset basedir="${package.path}">
-        <include name="**/*" />
-      </fileset>
-    </zip>
-  </target>
-  
 </project>
