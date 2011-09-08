@@ -238,6 +238,26 @@
   <ItemGroup>
     <Content Include="Views\Sessoes\Exibir.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="web.config.Debug.homolog">
+      <DependentUpon>web.config.homolog</DependentUpon>
+    </None>
+    <None Include="web.config.homolog" />
+    <None Include="web.config.Release.homolog">
+      <DependentUpon>web.config.homolog</DependentUpon>
+    </None>
+    <None Include="web.config.production" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="web.config.Debug.production">
+      <DependentUpon>web.config.production</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="web.config.Release.production">
+      <DependentUpon>web.config.production</DependentUpon>
+    </None>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
