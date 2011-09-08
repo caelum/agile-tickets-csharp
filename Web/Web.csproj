@@ -233,7 +233,7 @@
     <Content Include="Views\Sessoes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Infra\Dados.cshtml" />
+    <Content Include="Views\Infra\Cenario.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Sessoes\Exibir.cshtml" />

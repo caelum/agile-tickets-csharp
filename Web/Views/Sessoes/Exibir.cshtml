@@ -15,7 +15,9 @@
 <p>Total de Ingressos Reservados: @Model.IngressosReservados</p>
 <p>Total de Ingressos Disponíveis: @Model.IngressosDisponiveis</p>
 
+@if(@Model.IngressosDisponiveis > 0) {
 <form action="@Url.Action("Reservar", new { id = @Model.Id })" method="post">
     Quantidade: <input type="text" name="quantidade" />
     <input type="submit" value="Reservar Ingressos" />
 </form>
+}
