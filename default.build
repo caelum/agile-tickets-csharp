@@ -2,16 +2,16 @@
 <project name="AgileTickets" default="compile">
 
 	<property name="nunit.path" value="packages\NUnit.2.5.10.11092\tools" />
+  <property name="nant.contrib.path" value="C:\Program Files\nantcontrib\bin" />
+  
 	<property name="test.build.dir" value="Tests\bin\Release" />
-	<property name="webapp.path" value="Web" />
+	
+  <property name="webapp.path" value="Web" />
 	<property name="webapp.binary.path" value="${webapp.path}\bin" />
-	<property name="nant.contrib.path" value="C:\Program Files\nantcontrib\bin" />
 
   <property name="target.path" value="target" />
-  <property name="deploy.path" value="${target.path}/web" />
+  <property name="package.path" value="${target.path}/web" />
   <property name="reports.path" value="${target.path}/reports" />
-
-  <property name="production.path" value="c:\inetpub\agiletickets" />
 
   <target name="resolve" depends="clean">
     <exec workingdir="./" basedir="./" program="NuGet">
@@ -36,6 +36,9 @@
       <include name="**\obj\**" />
     </fileset>
     </delete>
+
+    <delete dir="${package.path}" />
+    <mkdir dir="${package.path}" />
   </target>
 
 	<target name="tests" description="Roda os testes" depends="compile">
@@ -48,33 +51,26 @@
 
 	</target>
 
-  <target name="deploy" depends="compile">
-    <copy todir="${deploy.path}">
-      <fileset basedir="${webapp.path}">
-        <include name="Web.config" />
-        <include name="Global.asax" />
-      </fileset>
-    </copy>
-
-    <copy todir="${deploy.path}/Views">
+  <target name="package" depends="compile">
+    <copy todir="${package.path}/Views">
       <fileset basedir="${webapp.path}/Views">
         <include name="**" />
       </fileset>
     </copy>
 
-    <copy todir="${deploy.path}/Content">
+    <copy todir="${package.path}/Content">
       <fileset basedir="${webapp.path}/Content">
         <include name="**" />
       </fileset>
     </copy>
 
-    <copy todir="${deploy.path}/Scripts">
+    <copy todir="${package.path}/Scripts">
       <fileset basedir="${webapp.path}/Scripts">
         <include name="**" />
       </fileset>
     </copy>
 
-    <copy todir="${deploy.path}/Bin">
+    <copy todir="${package.path}/Bin">
       <fileset basedir="${webapp.binary.path}">
         <include name="**.dll" />
       </fileset>
@@ -82,19 +78,32 @@
     
   </target>
 
-  <target name="production" depends="deploy">
-
-    <copy todir="${production.path}">
-      <fileset basedir="${deploy.path}">
-        <include name="**" />
+  <target name="config-production" depends="package">
+    <copy todir="${package.path}">
+      <fileset basedir="${webapp.path}">
+        <include name="Web.config.production" />
+        <include name="Global.asax" />
       </fileset>
     </copy>
 
+    <move file="${package.path}/Web.config.production" tofile="${package.path}/Web.config" />
   </target>
 
-  <target name="zip" depends="production">
-    <zip zipfile="${target.path}/app.zip">
-      <fileset basedir="${production.path}">
+  <target name="config-homolog" depends="package">
+    <copy todir="${package.path}">
+      <fileset basedir="${webapp.path}">
+        <include name="Web.config.homolog" />
+        <include name="Global.asax" />
+      </fileset>
+    </copy>
+
+    <move file="${package.path}/Web.config.homolog" tofile="${package.path}/Web.config" />
+  </target>
+
+
+  <target name="zip-production" depends="config-production">
+    <zip zipfile="${target.path}/web.zip">
+      <fileset basedir="${package.path}">
         <include name="**/*" />
       </fileset>
     </zip>

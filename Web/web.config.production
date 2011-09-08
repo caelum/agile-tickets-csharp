@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0"?>
-<!-- Esse eh o web.xml de desenvolvimento -->
-<!-- Ele aponta para bases de teste, e etc -->
-
+<!-- Este aqui eh o web.xml de producao -->
+<!-- Apontamos nossas connections strings, logs e etc, para os enderecos de producao aqui -->
 <configuration>
 
   <configSections>
