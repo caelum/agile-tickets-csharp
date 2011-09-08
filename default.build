@@ -6,9 +6,10 @@
 	<property name="webapp.path" value="Web" />
 	<property name="webapp.binary.path" value="${webapp.path}\bin" />
 	<property name="nant.contrib.path" value="C:\Program Files\nantcontrib\bin" />
-  
-  <property name="deploy.path" value="target/web" />
-  <property name="reports.path" value="target/reports" />
+
+  <property name="target.path" value="target" />
+  <property name="deploy.path" value="${target.path}/web" />
+  <property name="reports.path" value="${target.path}/reports" />
 
   <property name="production.path" value="c:\inetpub\agiletickets" />
 
@@ -89,6 +90,14 @@
       </fileset>
     </copy>
 
+  </target>
+
+  <target name="zip" depends="production">
+    <zip zipfile="${target.path}/app.zip">
+      <fileset basedir="${production.path}">
+        <include name="**/*" />
+      </fileset>
+    </zip>
   </target>
   
 </project>
