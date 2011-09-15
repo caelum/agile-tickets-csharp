@@ -26,11 +26,14 @@
   </target>
   
 	<target name="compile" depends="resolve">
-		<loadtasks assembly="${nant.contrib.path}\NAnt.Contrib.Tasks.dll" />
-		<msbuild project="AgileTickets.sln" target="Rebuild">
-			<arg line="/p:Configuration=Release" />
-		</msbuild>
-	</target>
+    <loadtasks assembly="${nant.contrib.path}\NAnt.Contrib.Tasks.dll" />
+    <msbuild project="AgileTickets.sln">
+      <property name="Configuration" value="Release" />
+      <property name="Platform" value="Any CPU" />
+      <arg value="/t:Build" />
+      <arg line="/m:2" />
+    </msbuild>
+  </target>
 
   <target name="clean">
     <delete>
