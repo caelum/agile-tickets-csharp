@@ -83,7 +83,7 @@ namespace AgileTickets.Web.Controllers
         {
             Espetaculo espetaculo = agenda.Espetaculo(id);
 
-            List<Sessao> novasSessoes = espetaculo.CriaSessoes(inicio, fim, periodicidade);
+            IList<Sessao> novasSessoes = espetaculo.CriaSessoes(inicio, fim, periodicidade);
 
             agenda.Agende(novasSessoes);
 

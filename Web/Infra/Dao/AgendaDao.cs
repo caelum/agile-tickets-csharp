@@ -42,7 +42,7 @@ namespace AgileTickets.Web.Infra.Dao
                 .List<Sessao>();
         }
 
-        public void Agende(List<Sessao> sessoes)
+        public void Agende(IList<Sessao> sessoes)
         {
             if (sessoes == null) return;
 

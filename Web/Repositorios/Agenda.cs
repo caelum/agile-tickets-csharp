@@ -14,6 +14,6 @@ namespace AgileTickets.Web.Repositorios
         void Cadastra(Espetaculo espetaculo);
         Sessao Sessao(int sessaoId);
         IList<Sessao> ProximasSessoes(int maximo);
-        void Agende(List<Sessao> sessoes);
+        void Agende(IList<Sessao> sessoes);
     }
 }

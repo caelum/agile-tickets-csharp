@@ -34,7 +34,7 @@ namespace AgileTickets.Web.Models
          * 
          * Repare que a data da primeira sessao é sempre a data inicial.
          */
-        public virtual List<Sessao> CriaSessoes(DateTime inicio, DateTime fim, Periodicidade periodicidade)
+        public virtual IList<Sessao> CriaSessoes(DateTime inicio, DateTime fim, Periodicidade periodicidade)
         {
             // ALUNO: Não apague esse metodo. Esse sim será usado no futuro! ;)
             return null;
