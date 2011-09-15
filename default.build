@@ -30,7 +30,7 @@
     <msbuild project="AgileTickets.sln">
       <property name="Configuration" value="Release" />
       <property name="Platform" value="Any CPU" />
-      <arg value="/t:Build" />
+      <arg value="/t:Rebuild" />
       <arg line="/m:2" />
     </msbuild>
   </target>
