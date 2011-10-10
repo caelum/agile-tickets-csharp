@@ -7,6 +7,7 @@ using FluentNHibernate;
 using AgileTickets.Web.Models;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
+using System.IO;
 
 namespace AgileTickets.Web.Infra.Database
 {
@@ -21,7 +22,7 @@ namespace AgileTickets.Web.Infra.Database
         public static FluentConfiguration SetEntities()
         {
             return Fluently.Configure().Database(
-                            SQLiteConfiguration.Standard.UsingFile("agiletickets.db").FormatSql().ShowSql()
+                            SQLiteConfiguration.Standard.UsingFile(Path.GetTempPath() + @"\agiletickets.db").FormatSql().ShowSql()
                             //MySQLConfiguration.Standard.ConnectionString("Server=localhost;Database=agileticketscsharp;Uid=root;Pwd=;")
                         ).Mappings(m =>
                         {
