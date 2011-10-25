@@ -42,7 +42,7 @@ namespace AgileTickets.Web.Models
 
         public virtual bool Vagas(int qtd, int min)
         {
-
+            // ALUNO: Não apague esse metodo. Esse sim será usado no futuro! ;)
             int totDisp = 0;
 
             foreach (Sessao s in Sessoes)
@@ -57,7 +57,7 @@ namespace AgileTickets.Web.Models
 
         public virtual bool Vagas(int qtd)
         {
-
+            // ALUNO: Não apague esse metodo. Esse sim será usado no futuro! ;)
             int totDisp = 0;
 
             foreach (Sessao s in Sessoes)
