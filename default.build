@@ -2,7 +2,7 @@
 <project name="AgileTickets" default="compile">
 
 	<property name="nunit.path" value="packages\NUnit.2.5.10.11092\tools" />
-  <property name="nant.contrib.path" value="C:\Program Files\nantcontrib\bin" />
+  <property name="nant.contrib.path" value="C:\Program Files (x86)\nant-0.92\nantcontrib-0.92\bin" />
   
 	<property name="test.build.dir" value="Tests\bin\Release" />
 	
